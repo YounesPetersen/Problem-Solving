@@ -1,0 +1,64 @@
+import numpy as np
+from itertools import combinations
+
+def count_matrices():
+    # Initialize the count of matrices with determinant zero
+    zero_det = 0
+    
+    # Generate all possible combinations of 4 positions out of 9
+    for positions in combinations(range(9), 4):
+        # Create a 3x3 matrix of zeroes
+        matrix = np.zeros((3, 3))
+        
+        # Set the selected positions to 1
+        for pos in positions:
+            row, col = divmod(pos, 3)
+            matrix[row, col] = 1
+            
+        # Calculate the determinant of the matrix
+        det = np.linalg.det(matrix)
+        
+        # Increment the count if the determinant is zero
+        if det == 0:
+            zero_det += 1
+            
+    return zero_det
+
+# Call the function and print the result
+zero_det = count_matrices()
+zero_det
+
+
+
+def print_matrices():
+    # Initialize the count of matrices with determinant zero
+    zero_det = 0
+    matrices_zero_det = []  # List to store matrices with determinant zero
+    
+    # Generate all possible combinations of 4 positions out of 9
+    for positions in combinations(range(9), 4):
+        # Create a 3x3 matrix of zeroes
+        matrix = np.zeros((3, 3))
+        
+        # Set the selected positions to 1
+        for pos in positions:
+            row, col = divmod(pos, 3)
+            matrix[row, col] = 1
+            
+        # Calculate the determinant of the matrix
+        det = np.linalg.det(matrix)
+        
+        # If the determinant is zero, store the matrix
+        if det == 0:
+            matrices_zero_det.append(matrix)
+            zero_det += 1
+            
+    # Print matrices with determinant zero
+    for idx, mat in enumerate(matrices_zero_det, 1):
+        print(f"Matrix {idx} with determinant 0:\n{mat}\n")
+        
+    return zero_det
+
+# Call the function to print matrices with determinant zero
+
+print_matrices()
